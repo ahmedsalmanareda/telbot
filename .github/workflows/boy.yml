@@ -1,0 +1,25 @@
+name: Run Telegram Bot
+on: 
+  workflow_dispatch:  # تشغيل يدوي
+  schedule:
+    - cron: '*/5 * * * *'  # يعيد التشغيل كل 5 دقائق
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4  # تنزيل الكود
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run Bot
+        run: |
+          nohup python bot.py > bot.log 2>&1 &
+          sleep 300  # ينتظر 5 دقائق قبل إنهاء العملية

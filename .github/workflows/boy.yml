@@ -22,4 +22,4 @@ jobs:
       - name: Run Bot
         run: |
           nohup python bot.py > bot.log 2>&1 &
-          sleep 300  # ينتظر 5 دقائق قبل إنهاء العملية
+          sleep 1000  # ينتظر 5 دقائق قبل إنهاء العملية
